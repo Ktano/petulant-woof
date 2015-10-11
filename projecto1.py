@@ -1,3 +1,8 @@
+#Grupo 34
+#n. 56564 Pedro Filipe Lopes Caetano
+#n. 82607 Joao Pedro Goncalves Loureiro
+
+
 def mandatos (nr_mandatos,nr_votos):
     mandato=1
     nr_candidaturas = len(nr_votos)
