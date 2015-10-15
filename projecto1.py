@@ -2,7 +2,6 @@
 #n. 56564 Pedro Filipe Lopes Caetano
 #n. 82607 Joao Pedro Goncalves Loureiro
 
-
 def mandatos (nr_mandatos,nr_votos):
     mandato=1
     nr_candidaturas = len(nr_votos)
@@ -49,72 +48,47 @@ def atribui_mandato(votos,mandatos_atuais):
         
     return mandatos_atuais[:candi_venc] + (mandatos_atuais[candi_venc]+1,) +\
            mandatos_atuais[candi_venc+1:]
+
+
+
+
+
+def tuplo_mandatos():
+    """
+    Cria um tuplo de tuplos com os mandatos distribuidos pelo respectivo circulo eleitoral apos fornecido um tuplo, ''votacoes''
+    """
+    mandatos_circulo=(16,3,19,3,4,9,3,9,4,10,47,2,39,9,18,6,5,9,5,6,2,2)
+    tuplo_mandatos_circulo=()
+    circulos=0
+    while circulos<22:
+        for i in mandatos_circulo:
+            tuplo_mandatos_circulo+=(mandatos(i, votacoes[circulos]), )
+            circulos+=1
+    return tuplo_mandatos_circulo
+
+
+
+def somas_por_candidatura (nr_candidatura):
+    #nr_candidatura representa o numero da candidatura como definido na tabela
+    #usaremos esta funcao para somar os mandatos por candidatura distribuidos pelos diferentes circulos eleitorais
+    
+    """
+    Para um numero de candidatura (como definido na tabela), soma os mandatos dos diferentes circulos eleitorais
+    """
+    THIS_IS_A_COMIC_RELIEF=tuplo_mandatos()
+    soma_dos_mandatos=0                 
+    while 1:
+        for i in THIS_IS_A_COMIC_RELIEF:
+            soma_dos_mandatos+=i[nr_candidatura]
+        return soma_dos_mandatos
+    
     
 
-#utilizaremos a funcao mandatos, anteriormente definida 
-#o primeiro parametro corresponde ao numero de mandatos correspondente a cada circulo,
-#indicado pelo nome da variavel 
-
-#para o numero de votos em cada partido, e num determinado circulo 
-#recorreremos ao indice n do tuplo votacoes- que contem os votos para cada partido 
-#num determindado circulo eleitoral
-
-
-aveiro=mandatos(16,votacoes[0])
-beja=mandatos(3,votacoes[1])
-braga=mandatos(19,votacoes[2])
-braganca=mandatos(3,votacoes[3])
-castelo_branco=mandatos(4, votacoes[4])
-coimbra=mandatos(9, votacoes[5])
-evora=mandatos(3, votacoes[6])
-faro=mandatos(9, votacoes[7])
-guarda=mandatos(4, votacoes[8])
-leiria=mandatos(10, votacoes[9])
-lisboa=mandatos(47, votacoes[10])
-portalegre=mandatos(2, votacoes[11])
-porto=mandatos(39, votacoes[12])
-santarem=mandatos(9, votacoes[13])
-setubal=mandatos(18, votacoes[14])
-viana_castelo=mandatos(6, votacoes[15])
-vila_real=mandatos(5, votacoes[16])
-viseu=mandatos(9, votacoes[17])
-acores=mandatos(5, votacoes[18])
-madeira=mandatos(6, votacoes[19])
-europa=mandatos(2, votacoes[20])
-fora_europa=mandatos(2, votacoes[21])
-
-#tuplo com os resultados das candidaturas distribuidas por circulo eleitoral de modo a facilitar a manipulacao dos dados
-candidaturas_votos=(aveiro, beja, braga, braganca, castelo_branco, coimbra, evora, faro, guarda, leiria, lisboa, portalegre, porto, santarem, setubal, viana_castelo, vila_real, viseu, acores, madeira, europa, fora_europa)
-
-
-    
 def assembleia (votacoes):
-    numero_candidatura=0
-    final=()
-    while numero_candidatura<15:
-        #coloca o numero de mandatos num tuplo 
-        final+=(somas_por_candidatura(candidaturas_votos,numero_candidatura), )
-        numero_candidatura+=1
-    return final
-
-
-
-def somas_por_candidatura (candidaturas_votos,numero_candidatura):
-    #numero_candidatura representa o numero da candidatura como definido na tabela 
-    
-    """
-    A partir do tuplo candidaturas_votos e de um inteiro correspondente ao numero da candidatura,
-    devolve o numero total de mandatos por candidatura
-    """
-    soma=0                 
-    while 1:            
-        for i in candidaturas_votos:
-            soma+=i[numero_candidatura]
-        return soma
-
-def mandatos_circulo (nr_circulo):
-    """
-    Calcula o numero de mandatos num determinado circulo
-    """
-    mandatos=(16,3,19,3,4,9,3,9,4,10,47,2,39,9,18,6,5,9,5,6,2,2)
-    return mandatos[nr_circulo]
+    #reune todas as somas por candidatura num tuplo com 15 entradas- correspondentes às candidaturas
+    nr_candidatura=0         
+    tuplo_assembleia=()
+    while nr_candidatura<15:
+        tuplo_assembleia+=(somas_por_candidatura(nr_candidatura), )
+        nr_candidatura+=1
+    return tuplo_assembleia
