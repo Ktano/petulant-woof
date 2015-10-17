@@ -17,6 +17,15 @@ while m<100:
     print(max_mandatos(a))
     m+=1
 
+def array_votacoes2():
+    x=0
+    votacoes =()
+    while x < 22:
+        votacao = (randrange(0,100000),randrange(0,1),randrange(0,1),randrange(0,1),randrange(0,1),randrange(0,1),randrange(0,1),randrange(0,1),randrange(0,1),randrange(0,1),randrange(0,1),randrange(0,1),randrange(0,1),randrange(0,1),randrange(0,1))
+        votacoes += (votacao,)
+    
+        x+=1
+    return votacoes
 
 #def gera_lista():
     #a=0

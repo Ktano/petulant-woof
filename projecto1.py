@@ -106,8 +106,8 @@ def mand_cir (nr_cir):
 
 def max_mandatos(votacoes):
     assembleia_final=assembleia(votacoes)
-    candi_act=0
-    candi_venc=candi_act
+    candi_act=1
+    candi_venc=0
     empate=False
     total_candi=len(assembleia_final)
     while  candi_act<total_candi:
